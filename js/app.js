@@ -46,7 +46,7 @@ const CONTENT = {
     "help": [
       "Available commands:",
       "",
-      "  whoami             — who I am + the mechanical-to-backend story",
+      "  whoami             — who I am",
       "  whoami --verbose   — the full story",
       "  ls projects        — list my projects",
       "  cat <project>      — deep dive into a project",
