@@ -4,6 +4,7 @@
 // ═══════════════════════════════════════════════════
 
 function trackEvent(name, params) {
+  console.log('[GA4 Event]:', name, params || {});
   if (typeof gtag === 'function') {
     gtag('event', name, params || {});
   }
