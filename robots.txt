@@ -3,4 +3,4 @@ Allow: /
 Disallow: /js/
 Disallow: /css/
 
-Sitemap: https://palayush16.github.io/portfolio-terminal/sitemap.xml
+Sitemap: https://palayush16.github.io/terminal-portfolio/sitemap.xml

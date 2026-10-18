@@ -26,7 +26,7 @@ A minimalistic, interactive portfolio website styled as a terminal. No framework
 ## Project Structure
 
 ```
-portfolio-terminal/
+terminal-portfolio/
 ├── index.html           ← HTML shell + GA4 tag + OG meta tags (~110 lines)
 ├── resume.html          ← Static resume page ("Normal view")
 ├── css/
@@ -174,10 +174,10 @@ Update `CONTENT.meta` for name/email/links, and the `contact` / `sudo hire-me` c
 git init
 git add .
 git commit -m "initial commit"
-git remote add origin https://github.com/palayush16/portfolio-terminal.git
+git remote add origin https://github.com/palayush16/terminal-portfolio.git
 git push -u origin main
 ```
-Settings → Pages → Deploy from `main` branch → `https://palayush16.github.io/portfolio-terminal/`
+Settings → Pages → Deploy from `main` branch → `https://palayush16.github.io/terminal-portfolio/`
 
 ### Netlify / Vercel
 Drag and drop the folder. No build command needed.
