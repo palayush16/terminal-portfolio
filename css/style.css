@@ -1,0 +1,876 @@
+/* ───────────────────────────────────────────
+   ayush@portfolio — Terminal + Activity Log
+   Layout: header → [terminal | log] panels
+   Colors: near-black bg, off-white text, green accent
+   Font: JetBrains Mono
+   ─────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg:          #0a0a0a;
+  --bg-panel:    #0d0d0d;
+  --bg-input:    #111111;
+  --bg-header:   #0e0e0e;
+  --text:        #d4d4d4;
+  --text-dim:    #6b6b6b;
+  --text-muted:  #3a3a3a;
+  --accent:      #4ade80;
+  --accent-dim:  #166534;
+  --prompt:      #4ade80;
+  --error:       #f87171;
+  --warn:        #facc15;
+  --link:        #60a5fa;
+  --border:      #1e1e1e;
+  --chip-bg:     #1a1a2e;
+  --chip-border: #2a2a4a;
+  --dot-red:     #ff5f57;
+  --dot-yellow:  #febc2e;
+  --dot-green:   #28c840;
+  --font:        'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════
+   LAYOUT: header → two-panel body
+   ══════════════════════════════════════ */
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* ── Header bar (fake window chrome) ── */
+
+#header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-app-region: drag;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red    { background: var(--dot-red); }
+.dot-yellow { background: var(--dot-yellow); }
+.dot-green  { background: var(--dot-green); }
+
+.dot {
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.dot:hover {
+  opacity: 0.7;
+  transform: scale(1.15);
+}
+
+/* ── Window controls: minimize ── */
+#panels.minimized {
+  display: none !important;
+}
+
+/* ── Window controls: maximize (hide log) ── */
+#log-panel.hidden,
+#panel-divider.hidden {
+  display: none !important;
+}
+
+#log-panel.hidden + #panel-divider {
+  display: none !important;
+}
+
+.header-title {
+  color: var(--text-dim);
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Token meter (in header) ── */
+
+.token-meter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.token-bar {
+  width: 100px;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.token-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.token-fill.near { background: var(--warn); }
+.token-fill.full { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+
+#normal-view-link {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.2s;
+}
+
+#normal-view-link:hover {
+  color: var(--accent);
+}
+
+/* ══════════════════════════════════════
+   TWO-PANEL BODY
+   ══════════════════════════════════════ */
+
+#panels {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+/* ── Left: Terminal ── */
+
+#terminal-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 50vw;
+  border-right: 1px solid var(--border);
+}
+
+/* ── Panel tab headers ── */
+
+.panel-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background: var(--bg-input);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.panel-tab-icon {
+  color: var(--accent);
+  font-size: 10px;
+}
+
+/* ── Terminal output area ── */
+
+#terminal {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  scroll-behavior: smooth;
+}
+
+#terminal::-webkit-scrollbar {
+  width: 6px;
+}
+
+#terminal::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+#terminal::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+#output {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* ── Output line types ── */
+
+.line {
+  min-height: 1.6em;
+}
+
+.line-prompt { color: var(--prompt); }
+.line-prompt .cmd { color: var(--text); }
+.line-output { color: var(--text); }
+.line-error  { color: var(--error); }
+.line-dim    { color: var(--text-dim); }
+.line-accent { color: var(--accent); }
+.line-thinking {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* ── Welcome hero text ── */
+.line-welcome-title {
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  padding: 8px 0 2px 0;
+  line-height: 1.3;
+}
+
+.line-welcome-subtitle {
+  color: var(--text-dim);
+  font-size: 16px;
+  padding-bottom: 4px;
+}
+
+.line-welcome-hint {
+  color: var(--text-muted);
+  font-size: 12px;
+  padding-top: 2px;
+}
+
+/* ── Input area ── */
+
+/* ── Terminal links ── */
+.term-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-dim);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.term-link:hover {
+  color: #86efac;
+  border-bottom-color: var(--accent);
+}
+
+#input-area {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-input);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+#input-area .prompt-text {
+  color: var(--prompt);
+  margin-right: 8px;
+  white-space: nowrap;
+  user-select: none;
+}
+
+#cmd-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  caret-color: transparent; /* hide native caret, we draw our own */
+}
+
+/* Blinking block cursor */
+#input-area::after {
+  content: '\2588';
+  color: var(--accent);
+  animation: blink 1s step-end infinite;
+  font-family: var(--font);
+  font-size: 14px;
+  margin-left: -2px;
+  pointer-events: none;
+}
+
+#cmd-input:disabled + .fake-cursor,
+#input-area:has(#cmd-input:disabled)::after {
+  opacity: 0.3;
+  animation: none;
+}
+
+#cmd-input::placeholder { color: var(--text-dim); }
+#cmd-input:disabled { opacity: 0.4; }
+
+/* ── Chips ── */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 4px 0;
+}
+
+.chip {
+  display: inline-block;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid var(--accent-dim);
+  border-radius: 6px;
+  color: var(--accent);
+  font-family: var(--font);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.chip:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Panel divider (draggable resize handle) ── */
+
+#panel-divider {
+  width: 5px;
+  background: var(--border);
+  flex-shrink: 0;
+  cursor: col-resize;
+  position: relative;
+  transition: background 0.15s;
+}
+
+#panel-divider:hover,
+#panel-divider.dragging {
+  background: var(--accent);
+}
+
+/* Wider invisible hit area for easier grabbing */
+#panel-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -4px;
+  right: -4px;
+}
+
+/* ══════════════════════════════════════
+   RIGHT PANEL: ACTIVITY LOG
+   ══════════════════════════════════════ */
+
+#log-panel {
+  width: 340px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg-panel);
+}
+
+.log-badge {
+  margin-left: auto;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ── Log feed ── */
+
+#log-feed {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 12px;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+#log-feed::-webkit-scrollbar {
+  width: 4px;
+}
+
+#log-feed::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#log-feed::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* ── Log entries ── */
+
+.log-entry {
+  display: flex;
+  gap: 6px;
+  padding: 2px 0;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.log-entry.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.log-ts {
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.log-elapsed {
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 10px;
+  padding-top: 1px;
+}
+
+.log-msg {
+  word-break: break-word;
+}
+
+/* Log entry type colors */
+.log-system  .log-msg { color: var(--text-dim); }
+.log-boot    .log-msg { color: var(--text-muted); }
+.log-command .log-msg { color: var(--text); font-weight: 700; }
+.log-response .log-msg { color: var(--accent); }
+.log-qna     .log-msg { color: #818cf8; }
+.log-tokens  .log-msg { color: var(--text-dim); }
+.log-drain   .log-msg { color: var(--warn); }
+.log-warn    .log-msg { color: var(--warn); }
+.log-error   .log-msg { color: var(--error); font-weight: 700; }
+.log-chip    .log-msg { color: #c084fc; }
+.log-info    .log-msg { color: var(--text-dim); }
+.log-heartbeat .log-msg { color: var(--text-muted); font-style: italic; }
+.log-xp-gain .log-msg { color: var(--accent); }
+.log-milestone .log-msg { color: var(--warn); font-weight: 700; }
+
+/* ── Log footer → htop status bar ── */
+
+#log-footer {
+  padding: 6px 12px;
+  background: var(--bg-input);
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.htop-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.htop-label {
+  width: 28px;
+  color: var(--text-dim);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.htop-bar {
+  flex: 1;
+  height: 5px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.htop-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.htop-cpu { background: var(--accent); }
+.htop-mem { background: #818cf8; }
+.htop-fps { background: #f59e0b; }
+
+.htop-val {
+  width: 30px;
+  text-align: right;
+  color: var(--text-dim);
+}
+
+.htop-val-wide {
+  width: 46px;
+}
+
+.htop-stats {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  padding-top: 2px;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Live pulse indicator */
+.log-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 1; }
+}
+
+/* ══════════════════════════════════════
+   CRT EFFECT
+   ══════════════════════════════════════ */
+#app.crt-on::before {
+  content: " "; display: block; position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.15) 50%),
+    linear-gradient(90deg, rgba(255,0,0,0.03), rgba(0,255,0,0.01), rgba(0,0,255,0.03));
+  z-index: 999; background-size: 100% 2px, 3px 100%; pointer-events: none;
+}
+#app.crt-on::after {
+  content: " "; display: block; position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: rgba(18,16,16,0.1); opacity: 0; z-index: 999;
+  pointer-events: none; animation: crt-flicker 0.15s infinite;
+}
+@keyframes crt-flicker {
+  0%{opacity:.03}10%{opacity:.02}20%{opacity:.02}30%{opacity:.06}
+  40%{opacity:.03}50%{opacity:.10}60%{opacity:.02}70%{opacity:.05}
+  80%{opacity:.07}90%{opacity:.07}100%{opacity:.02}
+}
+#app.crt-on #output, #app.crt-on #log-feed, #app.crt-on #input-area {
+  animation: crt-colorsep 1.6s infinite;
+}
+@keyframes crt-colorsep {
+  0%{text-shadow:.4px 0 1px rgba(0,30,255,.3),-.4px 0 1px rgba(255,0,80,.2),0 0 2px}
+  20%{text-shadow:1.5px 0 1px rgba(0,30,255,.3),-1.5px 0 1px rgba(255,0,80,.2),0 0 2px}
+  50%{text-shadow:.08px 0 1px rgba(0,30,255,.3),-.08px 0 1px rgba(255,0,80,.2),0 0 2px}
+  80%{text-shadow:.08px 0 1px rgba(0,30,255,.3),-.08px 0 1px rgba(255,0,80,.2),0 0 2px}
+  100%{text-shadow:1.1px 0 1px rgba(0,30,255,.3),-1.1px 0 1px rgba(255,0,80,.2),0 0 2px}
+}
+#app.crt-on { position: relative; box-shadow: inset 0 0 80px rgba(0,0,0,0.4); }
+@media (prefers-reduced-motion: reduce) {
+  #app.crt-on::after, #app.crt-on #output, #app.crt-on #log-feed, #app.crt-on #input-area {
+    animation: none !important;
+  }
+}
+
+/* ══════════════════════════════════════
+   CURSOR BLINK
+   ══════════════════════════════════════ */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+  color: var(--accent);
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — mobile-first fixes
+   ══════════════════════════════════════ */
+
+/* Prevent iOS zoom on input focus (needs >= 16px) */
+@media (max-width: 768px) {
+  #cmd-input {
+    font-size: 16px;
+  }
+}
+
+/* Tablet / small laptop */
+@media (max-width: 900px) {
+  #log-panel {
+    width: 280px;
+  }
+}
+
+/* Phone landscape + small tablets */
+@media (max-width: 768px) {
+  /* Stack panels vertically */
+  #panels {
+    flex-direction: column;
+  }
+
+  #terminal-panel {
+    flex: 1;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    min-height: 0;
+  }
+
+  #panel-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  /* Log panel: collapsible strip at bottom */
+  #log-panel {
+    width: 100%;
+    height: 180px;
+    flex-shrink: 0;
+  }
+
+  /* Hide XP meter on mobile — takes too much space */
+  .header-center {
+    display: none;
+  }
+
+  .header-title {
+    font-size: 11px;
+  }
+
+  html, body {
+    font-size: 13px;
+  }
+
+  /* Bigger touch targets for chips */
+  .chip {
+    padding: 10px 18px;
+    font-size: 13px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Welcome text scaling */
+  .line-welcome-title {
+    font-size: 18px;
+    padding: 4px 0 2px 0;
+  }
+
+  .line-welcome-subtitle {
+    font-size: 14px;
+  }
+
+  /* Shorter prompt on mobile */
+  #input-area .prompt-text {
+    font-size: 12px;
+  }
+
+  #input-area {
+    padding: 10px 12px;
+  }
+
+  #terminal {
+    padding: 12px;
+  }
+
+  /* Log entries: tighter */
+  .log-entry {
+    font-size: 10px;
+  }
+
+  .log-ts {
+    display: none;  /* hide full timestamps, keep elapsed */
+  }
+}
+
+/* Phone portrait */
+@media (max-width: 480px) {
+  #log-panel {
+    height: 150px;
+  }
+
+  #header-bar {
+    padding: 6px 10px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .header-title {
+    font-size: 10px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Even shorter prompt */
+  #input-area .prompt-text {
+    font-size: 11px;
+  }
+
+  /* Welcome hero smaller */
+  .line-welcome-title {
+    font-size: 16px;
+  }
+
+  .line-welcome-subtitle {
+    font-size: 13px;
+  }
+
+  .line-welcome-hint {
+    font-size: 11px;
+  }
+
+  /* Chips wrap nicely */
+  .chips {
+    gap: 6px;
+  }
+
+  .chip {
+    padding: 8px 14px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  /* Log footer htop bar: smaller */
+  .htop-label {
+    width: 24px;
+    font-size: 9px;
+  }
+
+  .htop-val {
+    width: 26px;
+    font-size: 9px;
+  }
+
+  .htop-stats {
+    font-size: 8px;
+  }
+}
+
+/* Very small phones (iPhone SE, Galaxy A series) */
+@media (max-width: 375px) {
+  .line-welcome-title {
+    font-size: 15px;
+  }
+
+  /* Hide normal-view link — dots are enough */
+  #normal-view-link {
+    display: none;
+  }
+
+  #log-panel {
+    height: 130px;
+  }
+
+  .chip {
+    padding: 7px 12px;
+    font-size: 11px;
+  }
+}
+
+/* ── Safe area insets for notched phones ── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  #input-area {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+
+  #log-footer {
+    padding-bottom: calc(6px + env(safe-area-inset-bottom));
+  }
+
+  #header-bar {
+    padding-top: calc(8px + env(safe-area-inset-top));
+  }
+}
+
+/* ── Touch: disable hover effects, smooth scrolling ── */
+@media (hover: none) and (pointer: coarse) {
+  /* No hover glow on chips — just active state */
+  .chip:hover {
+    background: var(--chip-bg);
+    border-color: var(--chip-border);
+    color: var(--text);
+  }
+
+  .chip:active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Smooth momentum scrolling */
+  #terminal,
+  #log-feed {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Dot hover: only on active */
+  .dot:hover {
+    opacity: 1;
+    transform: none;
+  }
+
+  .dot:active {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+/* ── Hide scrollbar on touch devices ── */
+@media (max-width: 768px) {
+  #terminal::-webkit-scrollbar,
+  #log-feed::-webkit-scrollbar {
+    display: none;
+  }
+
+  #terminal,
+  #log-feed {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

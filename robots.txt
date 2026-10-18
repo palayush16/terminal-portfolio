@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /css/
+
+Sitemap: https://palayush16.github.io/portfolio-terminal/sitemap.xml

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ayush Pal — Terminal Portfolio</title>
+  <meta name="description" content="Ayush Pal's portfolio — SDE-1 at Nielsen, backend systems, Java, C++, AWS">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- OpenGraph (LinkedIn, Slack, Discord, WhatsApp) -->
+  <meta property="og:title" content="Ayush Pal — Interactive Terminal Portfolio">
+  <meta property="og:description" content="Interactive terminal portfolio — explore projects, skills, and career. Type commands, earn XP, discover easter eggs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://palayush16.github.io/portfolio-terminal/">
+  <meta property="og:image" content="https://palayush16.github.io/portfolio-terminal/og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ayush Pal — Interactive Terminal Portfolio">
+  <meta name="twitter:description" content="Interactive terminal portfolio — type commands, earn XP, discover easter eggs.">
+  <meta name="twitter:image" content="https://palayush16.github.io/portfolio-terminal/og-preview.png">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/crt.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230a0a0a'/><text x='10' y='68' font-family='monospace' font-size='55' fill='%234ade80'>%3E_</text></svg>">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1Y0G16RCM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z1Y0G16RCM');
+  </script>
+</head>
+<body>
+  <div id="app">
+    <!-- Top header bar — fake window chrome -->
+    <div id="header-bar">
+      <div class="header-left">
+        <span class="dot dot-red" id="dot-close" title="Close → Normal view"></span>
+        <span class="dot dot-yellow" id="dot-minimize" title="Minimize terminal"></span>
+        <span class="dot dot-green" id="dot-maximize" title="Toggle activity panel"></span>
+        <span class="header-title">ayush@portfolio — bash</span>
+      </div>
+      <div class="header-center">
+        <div class="token-meter">
+          <span>xp:</span>
+          <div class="token-bar">
+            <div class="token-fill" id="token-fill" style="width: 0%"></div>
+          </div>
+          <span id="token-count">0 / 2000</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="resume.html" id="normal-view-link" onclick="trackEvent('normal_view_click')">Normal view ↗</a>
+      </div>
+    </div>
+
+    <!-- Two-panel body -->
+    <div id="panels">
+      <!-- Left: Terminal -->
+      <div id="terminal-panel">
+        <div class="panel-tab">
+          <span class="panel-tab-icon">▸</span> terminal
+        </div>
+        <div id="terminal">
+          <div id="output"></div>
+        </div>
+        <div id="input-area">
+          <span class="prompt-text">ayush@portfolio:~$</span>
+          <input type="text" id="cmd-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type a command or ask a question..." disabled>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div id="panel-divider"></div>
+
+      <!-- Right: Activity Log -->
+      <div id="log-panel">
+        <div class="panel-tab">
+          <span class="panel-tab-icon">▸</span> activity
+          <span class="log-badge" id="log-badge">0</span>
+        </div>
+        <div id="log-feed"></div>
+        <div id="log-footer">
+          <div class="htop-row">
+            <span class="htop-label">CPU</span>
+            <div class="htop-bar"><div class="htop-fill htop-cpu" id="htop-cpu"></div></div>
+            <span class="htop-val" id="htop-cpu-val">3%</span>
+          </div>
+          <div class="htop-row">
+            <span class="htop-label">MEM</span>
+            <div class="htop-bar"><div class="htop-fill htop-mem" id="htop-mem"></div></div>
+            <span class="htop-val htop-val-wide" id="htop-mem-val">0MB</span>
+          </div>
+          <div class="htop-row">
+            <span class="htop-label">FPS</span>
+            <div class="htop-bar"><div class="htop-fill htop-fps" id="htop-fps"></div></div>
+            <span class="htop-val" id="htop-fps-val">60</span>
+          </div>
+          <div class="htop-row htop-stats">
+            <span>PID: 1</span>
+            <span>DOM: <span id="htop-dom">0</span></span>
+            <span>Tasks: <span id="htop-tasks">13</span></span>
+            <span>Uptime: <span id="htop-uptime">0:00</span></span>
+            <span class="log-pulse"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/analytics.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

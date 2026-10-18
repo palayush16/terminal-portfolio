@@ -1,0 +1,1460 @@
+// ═══════════════════════════════════════════════════
+//  1. CONTENT DATA — all portfolio text
+// ═══════════════════════════════════════════════════
+const CONTENT = {
+  meta: {
+    name: "Ayush Pal",
+    role: "Software Engineer (MTS-1) @ Nielsen",
+    prompt: "ayush@portfolio:~$",
+    email: "palayush1603@gmail.com",
+    linkedin: "https://linkedin.com/in/palayush16/",
+    github: "https://github.com/palayush16",
+    tokenBudget: 2000
+  },
+
+  boot: [
+    "kernel: portfolio-os 1.0.0 (tty1)",
+    "init: mounting /dev/backend... OK",
+    "init: loading modules [java, cpp, spring, aws, mpeg-ts]",
+    "systemd: started terminal.service"
+  ],
+
+  welcome: [
+    "",
+    "  > ayush.init()",
+    "  ─────────────────────────────",
+    "  Software Engineer • Backend • Systems",
+    "",
+    "  There's no GUI here. Just code, projects, and bad jokes.",
+    "  Type help or click a chip. I don't judge.",
+    "  Earn XP as you explore. Reach 2000 for a surprise.",
+    ""
+  ],
+
+  commands: {
+    "whoami": [
+      "Ayush Pal",
+      "Software Engineer (MTS-1) at Nielsen, Bengaluru",
+      "",
+      "BE Mechanical Engineering + MSc Biological Sciences,",
+      "BITS Pilani (2025) — now building real-time C++",
+      "performance systems and Java microservices backends.",
+      "",
+      "→ type 'ls projects' to see what I've built"
+    ],
+
+    "help": [
+      "Available commands:",
+      "",
+      "  whoami             — who I am + the mechanical-to-backend story",
+      "  whoami --verbose   — the full story",
+      "  ls projects        — list my projects",
+      "  cat <project>      — deep dive into a project",
+      "  tree skills        — skills as a directory tree",
+      "  git log --oneline  — career timeline",
+      "  cat resume         — view my resume",
+      "  download resume    — get the PDF",
+      "  contact            — how to reach me",
+      "  sudo hire-me       — \ud83d\ude0f",
+      "  uptime             — session uptime + system stats",
+      "  fortune            — random dev wisdom",
+      "  neofetch            — system info",
+      "  sound on/off       — toggle keyboard sounds",
+      "  crt                — toggle CRT scanline effect",
+      "  clear              — clear the terminal",
+      "  history            — command history",
+      "",
+      "Earn XP by exploring. Hit 2000 and something happens."
+    ],
+
+    "ls projects": [
+      "drwxr-xr-x  vod-platform",
+      "drwxr-xr-x  sfp-matcher-gateway",
+      "drwxr-xr-x  reelserver",
+      "drwxr-xr-x  mediametrie-engine",
+      "drwxr-xr-x  signature-pipeline",
+      "drwxr-xr-x  ingestion-protocols",
+      "drwxr-xr-x  aws-data-pipeline",
+      "drwxr-xr-x  analytics-service",
+      "",
+      "→ type 'cat <project-name>' to read more"
+    ],
+
+    "cat vod-platform": [
+      "══════════════════════════════════",
+      "  VOD Processing Platform Modernization",
+      "══════════════════════════════════",
+      "",
+      "Problem:  Legacy .NET WinForms monolith couldn't scale",
+      "          for asset downloads, audio signatures, and",
+      "          metadata ingestion.",
+      "",
+      "Stack:    Java · Spring Boot · AWS EKS · SQS · S3",
+      "          DynamoDB · MySQL · Parquet",
+      "",
+      "What I built:",
+      "  → Containerized Spring Boot backend on EKS",
+      "  → 6-worker concurrent pipeline (event-driven)",
+      "  → Automated Parquet-based NCL sync to Media Data Lake",
+      "  → SQS/S3/DynamoDB for the full event flow",
+      "",
+      "Result:   Replaced the entire legacy .NET app.",
+      "          Runs in production across multiple countries."
+    ],
+
+    "cat sfp-matcher-gateway": [
+      "══════════════════════════════════",
+      "  StreamFPMatcherGateway",
+      "══════════════════════════════════",
+      "",
+      "Problem:  Needed fingerprint matching at scale for",
+      "          linear TV measurement — 5,000+ reference",
+      "          files, 120,000+ fragments daily.",
+      "",
+      "Stack:    Java · ExecutorService · WatchService",
+      "          Quartz · Custom thread pool",
+      "",
+      "What I built:",
+      "  → Architected from scratch (not a rewrite)",
+      "  → Custom ExecutorService thread pool",
+      "  → WatchService-driven live file monitoring",
+      "  → Quartz-based background job scheduling",
+      "  → Automatic crash recovery",
+      "",
+      "Result:   5,000+ ref files processed,",
+      "          120,000+ fragments generated daily.",
+      "          Zero-downtime crash recovery."
+    ],
+
+    "cat aws-data-pipeline": [
+      "══════════════════════════════════",
+      "  End-to-End AWS Data Pipeline",
+      "══════════════════════════════════",
+      "",
+      "Problem:  No real-time data ingestion pipeline existed.",
+      "          Everything was CSV-based manual workflows.",
+      "",
+      "Stack:    AWS (S3 → SNS → SQS → Lambda → DynamoDB)",
+      "          Spring Boot · API Gateway · JWT · CloudFormation",
+      "",
+      "What I built:",
+      "  → Secure event-driven pipeline, fully serverless",
+      "  → Spring Boot REST APIs behind API Gateway + JWT",
+      "  → Full IaC with CloudFormation (IAM, Lambda, APIGW)",
+      "  → React frontend on EC2 (VPC, private subnet, NGINX)",
+      "",
+      "Result:   Eliminated CSV workflows for 24-hour",
+      "          TV viewership analysis."
+    ],
+
+    "cat reelserver": [
+      "══════════════════════════════════",
+      "  ReelServer — Linear Referencing System",
+      "══════════════════════════════════",
+      "",
+      "Role:     End-to-end ownership",
+      "",
+      "Stack:    C++",
+      "",
+      "What I own:",
+      "  → High-throughput linear referencing backend",
+      "  → 24/7 uptime across Italy, UK, and France",
+      "  → 8 production releases shipped",
+      "  → Deployment management + incident resolution",
+      "",
+      "Result:   Sustained global TV measurement",
+      "          across 3 countries without downtime."
+    ],
+
+    "cat mediametrie-engine": [
+      "══════════════════════════════════",
+      "  Distributed External Service Integration",
+      "══════════════════════════════════",
+      "",
+      "Problem:  Mediametrie (France) needed real-time VOD",
+      "          ingestion, streaming crediting, and",
+      "          household provisioning with 100% SLA.",
+      "",
+      "Stack:    Java · Spring Boot · AWS SQS · S3 · DynamoDB",
+      "",
+      "What I built:",
+      "  → 10-thread near-real-time SQS consumer",
+      "  → JSON payload processing into S3/DynamoDB",
+      "  → AWS SDK for Java integration",
+      "",
+      "Result:   100% SLA compliance maintained.",
+      "          Zero missed ingestion windows."
+    ],
+
+    "cat signature-pipeline": [
+      "══════════════════════════════════",
+      "  Signature Pipeline Optimization",
+      "══════════════════════════════════",
+      "",
+      "Problem:  Audio signature collisions under jitter",
+      "          and variable sample rates.",
+      "",
+      "Stack:    C++",
+      "",
+      "What I built:",
+      "  → Silence-block insertion logic",
+      "  → Overlap-discard redesign",
+      "  → Handles variable sample rates + jitter",
+      "",
+      "Result:   Eliminated collisions, improved crediting",
+      "          accuracy across 5,000+ channels."
+    ],
+
+    "cat ingestion-protocols": [
+      "══════════════════════════════════",
+      "  Ingestion Protocol Extensions",
+      "══════════════════════════════════",
+      "",
+      "Problem:  Hardcoded PID/index config in stream",
+      "          ingestion limited resilience.",
+      "",
+      "Stack:    C++ · IGMPv3 SSM · SRT (Haivision) · MPEG-TS · HLS",
+      "",
+      "What I built:",
+      "  → IGMPv3 Source-Specific Multicast support",
+      "  → SRT (Haivision SRTLib) integration",
+      "  → MPEG-TS language stream selection",
+      "  → HLS ingestion path",
+      "",
+      "Result:   Removed hardcoded config, improved",
+      "          resilience for low-latency broadcast."
+    ],
+
+    "cat analytics-service": [
+      "══════════════════════════════════",
+      "  Analytics Service (Internship)",
+      "══════════════════════════════════",
+      "",
+      "Problem:  TV viewership analysis relied on",
+      "          manual CSV-based workflows.",
+      "",
+      "Stack:    EC2 · VPC · NGINX · React frontend",
+      "",
+      "What I built:",
+      "  → Internal data visualization platform",
+      "  → Deployed on EC2 (private subnet, reverse proxy)",
+      "  → Eliminated CSV workflows for 24-hour analysis",
+      "",
+      "Result:   Improved efficiency for the entire",
+      "          viewership analysis team."
+    ],
+
+    "tree skills": [
+      "skills/",
+      "│",
+      "├── languages/    java ★★★★  cpp ★★★★  sql ★★★  js ★★★",
+      "│",
+      "├── backend/      c++ · spring-boot · hibernate · rest-apis · jwt",
+      "│                 java.util.concurrent · node.js",
+      "│",
+      "├── cloud-aws/    eks · sqs/sns · s3 · dynamodb · lambda",
+      "│                 ec2 · cloudformation · api-gw · iam · vpc",
+      "│",
+      "├── protocols/    tcp/ip · udp-multicast · igmpv3-ssm",
+      "│                 srt · hls · mpeg-ts · rtp · directshow",
+      "│",
+      "├── databases/    mysql · dynamodb · sql-server",
+      "│",
+      "├── devops/       git · gitlab-ci · maven/gradle · nginx",
+      "│",
+      "└── foundations/  dsa · oop · os · distributed-systems"
+    ],
+
+    "git log --oneline": [
+      "f7a2c1e  2025-07  SDE-1 (MTS-1) at Nielsen, Bengaluru",
+      "d3b8f0a  2024-07  Software Engineer Intern at Nielsen",
+      "a1c9e2d  2025-07  B.E. + M.Sc. Dual Degree, BITS Pilani Goa (8.32)",
+      "8e4d6b3  2020-08  Started at BITS Pilani, Goa Campus",
+      "5f1a9c7  2020     Sr. Secondary, CMS Lucknow (92.5%)",
+      "",
+      "→ HEAD → main  (Nielsen, building backend systems)"
+    ],
+
+    "cat resume": [
+      "══════════════════════════════════",
+      "  AYUSH PAL — Software Engineer",
+      "══════════════════════════════════",
+      "",
+      "Email:    palayush1603@gmail.com",
+      "LinkedIn: linkedin.com/in/palayush16/",
+      "",
+      "EDUCATION",
+      "  BITS Pilani, Goa — BE + MSc Dual Degree",
+      "  CGPA: 8.32 | Aug 2020 – Jul 2025",
+      "",
+      "EXPERIENCE",
+      "  Nielsen | SDE-1 (MTS-1) | Jul 2025 – Present",
+      "  • VOD Platform (Java/Spring Boot/EKS)",
+      "  • StreamFPMatcherGateway — 5K refs, 120K/day",
+      "  • Mediametrie SQS — 100% SLA",
+      "  • ReelServer C++ — 8 production releases",
+      "  • Audio signature pipeline (5,000+ channels)",
+      "  • IGMPv3 SSM + SRT + HLS protocols",
+      "",
+      "  Nielsen | Intern | Jul 2024 – Jun 2025",
+      "  • Analytics platform on EC2/VPC/NGINX",
+      "  • AWS: S3→SNS→SQS→Lambda→DynamoDB",
+      "",
+      "SKILLS",
+      "  Java, C++, Spring Boot, AWS, EKS, SQS,",
+      "  DynamoDB, TCP/IP, MPEG-TS, SRT, Git",
+      "",
+      "→ type 'download resume' for the PDF"
+    ],
+
+    "download resume": [
+      { html: '📄 <a href="https://drive.google.com/file/d/1JCoED_c-JpqlcgwwJAXkZj4qCm9gQyMr/view?usp=sharing" target="_blank" rel="noopener" class="term-link">Download Resume (PDF)</a>' }
+    ],
+
+    "contact": [
+      "══════════════════════════════════",
+      "  Let's connect",
+      "══════════════════════════════════",
+      "",
+      { html: '  📧  <a href="mailto:palayush1603@gmail.com" class="term-link">palayush1603@gmail.com</a>' },
+      { html: '  🔗  <a href="https://linkedin.com/in/palayush16/" target="_blank" rel="noopener" class="term-link">linkedin.com/in/palayush16/</a>' },
+      { html: '  🐙  <a href="https://github.com/palayush16" target="_blank" rel="noopener" class="term-link">github.com/palayush16</a>' },
+      "",
+      "  LinkedIn DM works fastest."
+    ],
+
+    "sudo hire-me": [
+      "",
+      "[sudo] password for recruiter: ********",
+      "✓ root access granted.",
+      "",
+      "  Congratulations, you've escalated privileges.",
+      "  This is the part where I pretend to be surprised.",
+      "",
+      "  Name:       Ayush Pal",
+      "  Role:       SDE / Backend Engineer",
+      "  Experience: ~1.5 years at Nielsen",
+      "  Stack:      Java, C++, Spring Boot, AWS",
+      "  Weakness:   Will mass message Slack for free food",
+      "",
+      { html: '  📧  <a href="mailto:palayush1603@gmail.com" class="term-link">palayush1603@gmail.com</a>' },
+      { html: '  🔗  <a href="https://linkedin.com/in/palayush16/" target="_blank" rel="noopener" class="term-link">linkedin.com/in/palayush16/</a>' },
+      "",
+      "  LinkedIn DM preferred. I promise I read faster than my CI pipeline.",
+      ""
+    ]
+  }
+};
+
+// ═══════════════════════════════════════════════════
+//  3. ACTIVITY LOG — real-time event feed
+// ═══════════════════════════════════════════════════
+class ActivityLog {
+  constructor() {
+    this.feedEl = document.getElementById('log-feed');
+    this.badgeEl = document.getElementById('log-badge');
+    this.count = 0;
+    this.sessionStart = Date.now();
+  }
+
+  getTimestamp() {
+    const now = new Date();
+    return now.toTimeString().slice(0, 8);
+  }
+
+  getElapsed() {
+    const s = Math.floor((Date.now() - this.sessionStart) / 1000);
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `+${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+  }
+
+  log(text, type = 'info') {
+    const entry = document.createElement('div');
+    entry.className = `log-entry log-${type}`;
+    const ts = document.createElement('span');
+    ts.className = 'log-ts';
+    ts.textContent = `[${this.getTimestamp()}]`;
+    const elapsed = document.createElement('span');
+    elapsed.className = 'log-elapsed';
+    elapsed.textContent = this.getElapsed();
+    const msg = document.createElement('span');
+    msg.className = 'log-msg';
+    msg.textContent = ` ${text}`;
+    entry.appendChild(ts);
+    entry.appendChild(elapsed);
+    entry.appendChild(msg);
+    this.feedEl.appendChild(entry);
+    requestAnimationFrame(() => entry.classList.add('visible'));
+    this.count++;
+    this.badgeEl.textContent = this.count;
+    this.feedEl.scrollTop = this.feedEl.scrollHeight;
+  }
+
+  system(text)  { this.log(text, 'system'); }
+  command(cmd)  { this.log(`> ${cmd}`, 'command'); }
+  response(cmd) { this.log(`loaded ${cmd}`, 'response'); }
+  tokens(earned, total) { this.log(`xp: ${earned}/${total}`, 'tokens'); }
+  error(text)   { this.log(text, 'error'); }
+  chip(label)   { this.log(`chip: "${label}"`, 'chip'); }
+  boot(line)    { this.log(line, 'boot'); }
+  heartbeat(msg){ this.log(msg, 'heartbeat'); }
+}
+
+// ═══════════════════════════════════════════════════
+//  4. SOUND ENGINE — Web Audio mechanical key click
+// ═══════════════════════════════════════════════════
+class SoundEngine {
+  constructor() {
+    this.enabled = false;
+    this.audioCtx = null;
+    this.initOnInteraction();
+  }
+
+  initOnInteraction() {
+    const initCtx = () => {
+      if (!this.audioCtx) {
+        this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      document.removeEventListener('click', initCtx);
+      document.removeEventListener('keydown', initCtx);
+    };
+    document.addEventListener('click', initCtx, { once: true });
+    document.addEventListener('keydown', initCtx, { once: true });
+  }
+
+  playClick() {
+    if (!this.enabled || !this.audioCtx) return;
+    const ctx = this.audioCtx;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(800 + Math.random() * 400, ctx.currentTime);
+    gain.gain.setValueAtTime(0.03, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.05);
+  }
+}
+
+// ═══════════════════════════════════════════════════
+//  5. TERMINAL ENGINE — command dispatch, typing, chips, XP
+// ═══════════════════════════════════════════════════
+class Terminal {
+  constructor(content, activityLog) {
+    this.content = content;
+    this.log = activityLog;
+    this.history = [];
+    this.historyIndex = -1;
+    this.tokenBudget = content.meta.tokenBudget;
+    this.tokensEarned = 0;
+    this.milestoneReached = false;
+    this.isTyping = false;
+    this.skipTyping = false;
+
+    this.outputEl = document.getElementById('output');
+    this.inputEl = document.getElementById('cmd-input');
+    this.terminalEl = document.getElementById('terminal');
+    this.tokenCountEl = document.getElementById('token-count');
+    this.tokenFillEl = document.getElementById('token-fill');
+
+    this.commandList = Object.keys(content.commands).concat(
+      ['clear', 'history', 'uptime', 'sound on', 'sound off', 'crt', 'crt on', 'crt off',
+       'whoami --verbose', 'fortune', 'rm -rf /', 'sudo su', 'neofetch']
+    );
+
+    this.sound = new SoundEngine();
+    this.soundEnabled = false;
+    this.crtEnabled = false;
+    this.bootTime = Date.now();
+
+    // Analytics tracking
+    this._firstCommandFired = false;
+    this._commandCounts = {};  // { "ls projects": 3, "help": 5 }
+    this._projectViews = {};   // { "vod-platform": 2, "reelserver": 1 }
+
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    this.inputEl.addEventListener('keydown', (e) => {
+      if (e.key.length === 1 || e.key === 'Enter' || e.key === 'Backspace') {
+        this.sound.playClick();
+      }
+      this.handleKey(e);
+    });
+    this.terminalEl.addEventListener('click', () => {
+      if (this.isTyping) this.skipTyping = true;
+      this.inputEl.focus();
+    });
+  }
+
+  handleKey(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const cmd = this.inputEl.value.trim();
+      if (cmd) this.execute(cmd);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      this.navigateHistory(-1);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      this.navigateHistory(1);
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+      this.tabComplete();
+    } else if (e.key === 'l' && e.ctrlKey) {
+      e.preventDefault();
+      this.clearScreen();
+    }
+  }
+
+  navigateHistory(dir) {
+    if (!this.history.length) return;
+    this.historyIndex += dir;
+    if (this.historyIndex < 0) this.historyIndex = 0;
+    if (this.historyIndex >= this.history.length) {
+      this.historyIndex = this.history.length;
+      this.inputEl.value = '';
+      return;
+    }
+    this.inputEl.value = this.history[this.historyIndex];
+  }
+
+  tabComplete() {
+    const partial = this.inputEl.value.toLowerCase();
+    if (!partial) return;
+    const matches = this.commandList.filter(c => c.startsWith(partial));
+    if (matches.length === 1) {
+      this.inputEl.value = matches[0];
+      this.log.system(`tab -> ${matches[0]}`);
+    } else if (matches.length > 1) {
+      this.addLine('');
+      this.addLine(matches.join('  '), 'dim');
+      this.log.system(`tab: ${matches.length} matches`);
+    }
+  }
+
+  async execute(input) {
+    this.history.push(input);
+    this.historyIndex = this.history.length;
+    this.addPromptLine(input);
+    this.inputEl.value = '';
+    this.inputEl.disabled = true;
+    const cmd = input.toLowerCase().trim();
+    this.log.command(cmd);
+    trackEvent('command', {
+      command_name: cmd,
+      input_method: this._lastInputMethod || 'typed',
+      commands_total: this.history.length
+    });
+    this._lastInputMethod = 'typed';
+
+    // ── Analytics: time to first command ──
+    if (!this._firstCommandFired) {
+      this._firstCommandFired = true;
+      const ttfc = Math.round((Date.now() - this.bootTime) / 1000);
+      trackEvent('time_to_first_command', {
+        seconds: ttfc,
+        first_command: cmd,
+        input_method: this._lastInputMethod || 'typed'
+      });
+    }
+
+    // ── Analytics: command frequency ──
+    this._commandCounts[cmd] = (this._commandCounts[cmd] || 0) + 1;
+    trackEvent('command_frequency', {
+      command_name: cmd,
+      count: this._commandCounts[cmd]
+    });
+
+    // ── Analytics: project view heatmap ──
+    if (cmd.startsWith('cat ') && cmd !== 'cat resume') {
+      const project = cmd.slice(4).trim();
+      this._projectViews[project] = (this._projectViews[project] || 0) + 1;
+      trackEvent('project_view', {
+        project_name: project,
+        view_count: this._projectViews[project],
+        total_projects_viewed: Object.keys(this._projectViews).length
+      });
+    }
+
+    if (cmd === 'clear') {
+      this.clearScreen();
+      this.log.system('screen cleared');
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+    if (cmd === 'history') {
+      this.addLines(this.history.map((h, i) => `  ${i + 1}  ${h}`));
+      this.log.response(`history (${this.history.length} entries)`);
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // Uptime
+    if (cmd === 'uptime') {
+      const elapsed = Date.now() - this.bootTime;
+      const secs = Math.floor(elapsed / 1000);
+      const mins = Math.floor(secs / 60);
+      const hrs = Math.floor(mins / 60);
+      const timeStr = hrs > 0
+        ? `${hrs} hour${hrs>1?'s':''}, ${mins%60} minute${mins%60!==1?'s':''}, ${secs%60} second${secs%60!==1?'s':''}`
+        : mins > 0
+        ? `${mins} minute${mins!==1?'s':''}, ${secs%60} second${secs%60!==1?'s':''}`
+        : `${secs} second${secs!==1?'s':''}`;
+      const load = [(Math.random()*0.8+0.1).toFixed(2), (Math.random()*0.6+0.1).toFixed(2), (Math.random()*0.4+0.1).toFixed(2)];
+      this.addLines([
+        ` up ${timeStr}, 1 user, load average: ${load.join(', ')}`,
+        ` commands run: ${this.history.length}`,
+        ` xp earned: ${this.tokensEarned}/${this.tokenBudget}`,
+        ` sound: ${this.soundEnabled ? 'on' : 'off'}`,
+        ` crt: ${this.crtEnabled ? 'on' : 'off'}`
+      ]);
+      this.log.response('uptime');
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // Sound toggle
+    if (cmd === 'sound on') {
+      this.soundEnabled = true;
+      this.sound.enabled = true;
+      this.addLine('🔊 keyboard sounds enabled', 'accent');
+      this.log.system('sound: ON');
+      trackEvent('feature_toggle', { feature: 'sound', state: 'on' });
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+    if (cmd === 'sound off') {
+      this.soundEnabled = false;
+      this.sound.enabled = false;
+      this.addLine('🔇 keyboard sounds disabled', 'dim');
+      this.log.system('sound: OFF');
+      trackEvent('feature_toggle', { feature: 'sound', state: 'off' });
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // CRT toggle
+    if (cmd === 'crt' || cmd === 'crt on') {
+      document.getElementById('app').classList.add('crt-on');
+      this.crtEnabled = true;
+      this.addLine('📺 CRT mode enabled — scanlines, flicker, color separation', 'accent');
+      this.addLine("Type 'crt off' to disable.", 'dim');
+      this.log.system('CRT: ON');
+      trackEvent('feature_toggle', { feature: 'crt', state: 'on' });
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+    if (cmd === 'crt off') {
+      document.getElementById('app').classList.remove('crt-on');
+      this.crtEnabled = false;
+      this.addLine('CRT mode disabled', 'dim');
+      this.log.system('CRT: OFF');
+      trackEvent('feature_toggle', { feature: 'crt', state: 'off' });
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // ── Easter egg: whoami --verbose ──
+    if (cmd === 'whoami --verbose' || cmd === 'whoami -v') {
+      this.log.response('whoami --verbose');
+      this.earnTokens(50, 'command');
+      await this.typeLines([
+        'Ayush Pal',
+        'Software Engineer (MTS-1) at Nielsen, Bengaluru',
+        '',
+        '══════════════════════════════════════════',
+        '  The Long Version',
+        '══════════════════════════════════════════',
+        '',
+        'Education:',
+        '  BE Mechanical Engineering + MSc Biological Sciences',
+        '  BITS Pilani, Goa Campus (2020-2025) — CGPA: 8.32',
+        '  Yes, mechanical to software. No, it wasn\'t a typo.',
+        '',
+        'The pivot:',
+        '  Started coding in sophomore year. Fell in love with',
+        '  systems that run 24/7 without anyone watching. Built',
+        '  my first multithreaded app and never looked back.',
+        '',
+        'What I do now:',
+        '  → Own C++ real-time audio signature systems (5,000+ channels)',
+        '  → Build Java/Spring Boot microservices on AWS EKS',
+        '  → Ship production releases across Italy, UK, France',
+        '  → Debug MPEG-TS streams at 3am because broadcast never sleeps',
+        '',
+        'What drives me:',
+        '  I like building things that process millions of events',
+        '  and nobody notices — because they just work.',
+        '',
+        'Fun facts:',
+        '  → Will mass message Slack for free food',
+        '  → Read faster than my CI pipeline',
+        '  → Think in thread pools and event queues',
+        '  → My mechanical engineering friends still ask what I do',
+        '',
+      ]);
+      this.showFollowupChips(['ls projects', 'contact', 'sudo hire-me']);
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // ── Easter egg: fortune ──
+    if (cmd === 'fortune' || cmd === 'fortune | cowsay') {
+      this.log.response('fortune');
+      trackEvent('easter_egg', { egg: 'fortune' });
+      this.earnTokens(50, 'easter-egg');
+      const fortunes = [
+        '"There are only two hard things in Computer Science: cache invalidation and naming things." — Phil Karlton',
+        '"It works on my machine." — Every developer, moments before disaster',
+        '"Any sufficiently advanced bug is indistinguishable from a feature." — Rich Kulawiec',
+        '"The best error message is the one that never shows up." — Thomas Fuchs',
+        '"First, solve the problem. Then, write the code." — John Johnson',
+        '"Code is like humor. When you have to explain it, it\'s bad." — Cory House',
+        '"The most disastrous thing you can learn is your first programming language." — Alan Kay',
+        '"Weeks of coding can save you hours of planning." — Unknown',
+        '"It\'s not a bug, it\'s an undocumented feature." — Every QA engineer',
+        '"If debugging is the process of removing bugs, then programming must be the process of putting them in." — Edsger Dijkstra',
+        '"Software is like entropy: it is difficult to grasp, weighs nothing, and obeys the Second Law of Thermodynamics; i.e., it always increases." — Norman Augustine',
+        '"Talk is cheap. Show me the code." — Linus Torvalds',
+      ];
+      const quote = fortunes[Math.floor(Math.random() * fortunes.length)];
+      this.addLine('');
+      this.addLine(quote, 'accent');
+      this.addLine('');
+      this.showFollowupChips(['fortune', 'help']);
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // ── Easter egg: neofetch ──
+    if (cmd === 'neofetch') {
+      this.log.response('neofetch');
+      trackEvent('easter_egg', { egg: 'neofetch' });
+      this.earnTokens(50, 'easter-egg');
+      const upSecs = Math.floor((Date.now() - this.bootTime) / 1000);
+      const upMin = Math.floor(upSecs / 60);
+      const upStr = upMin > 0 ? `${upMin}m ${upSecs % 60}s` : `${upSecs}s`;
+      this.addLine('');
+      this.addLine('ayush@portfolio', 'accent');
+      this.addLine('----------------', 'dim');
+      this.addLine(`Role: SDE-1 (MTS-1) @ Nielsen`);
+      this.addLine(`Stack: Java, C++, Spring Boot, AWS`);
+      this.addLine(`Shell: bash`);
+      this.addLine(`Uptime: ${upStr}`);
+      this.addLine(`XP: ${this.tokensEarned}/${this.tokenBudget}`);
+      this.addLine('');
+      this.showFollowupChips(['tree skills', 'ls projects', 'help']);
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // ── Easter egg: rm -rf / ──
+    if (cmd === 'rm -rf /' || cmd === 'rm -rf /*' || cmd === 'rm -rf') {
+      this.log.response('rm -rf /');
+      trackEvent('easter_egg', { egg: 'rm-rf' });
+      this.earnTokens(50, 'easter-egg');
+      const fakeDeletions = [
+        'removing /usr/bin/boring-jobs...',
+        'removing /etc/comfort-zone...',
+        'removing /var/log/imposter-syndrome...',
+        'removing /home/recruiter/doubts...',
+        'removing /opt/legacy-monoliths...',
+        'removing /tmp/excuses...',
+        'removing /dev/null-social-life...',
+      ];
+      for (const line of fakeDeletions) {
+        this.addLine(line, 'error');
+        this.scrollToBottom();
+        if (!this.skipTyping) await this.sleep(200);
+      }
+      await this.sleep(400);
+      this.addLine('');
+      this.addLine('Just kidding. System intact.', 'accent');
+      this.addLine("You can't break what's already production-hardened.", 'dim');
+      this.addLine('');
+      this.showFollowupChips(['sudo hire-me', 'help']);
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // ── Easter egg: sudo su ──
+    if (cmd === 'sudo su' || cmd === 'su' || cmd === 'sudo -i' || cmd === 'sudo bash') {
+      this.log.response('sudo su');
+      trackEvent('easter_egg', { egg: 'sudo-su' });
+      this.earnTokens(50, 'easter-egg');
+      const suLines = [
+        '[sudo] password for recruiter: ********',
+        '',
+        'Verifying credentials...',
+      ];
+      for (const line of suLines) {
+        this.addLine(line, 'dim');
+        this.scrollToBottom();
+        if (!this.skipTyping) await this.sleep(300);
+      }
+      await this.sleep(500);
+      this.addLine('');
+      this.addLine('\u2713 root@portfolio:~#', 'accent');
+      this.addLine('');
+      this.addLine("You're already root here.", 'output');
+      this.addLine("In fact, you've always been root.", 'output');
+      this.addLine("The real question is: what will you build with it?", 'dim');
+      this.addLine('');
+      this.addLine('# cat /etc/shadow', 'dim');
+      this.addLine('recruiter:$6$curiosity:18923::::::', 'dim');
+      this.addLine('ayush:$6$hired:99999::::::', 'dim');
+      this.addLine('');
+      this.showFollowupChips(['sudo hire-me', 'contact', 'help']);
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // Fixed commands
+    const cmdOutput = this.content.commands[cmd];
+    if (cmdOutput) {
+      this.log.response(cmd);
+      this.earnTokens(50, 'command');
+      await this.typeLines(cmdOutput);
+      this.showCommandChips(cmd);
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // Keyword Q&A — natural language questions
+    const answer = this.matchQna(cmd);
+    if (answer) {
+      this.log.response(`qna: ${answer.id}`);
+      this.earnTokens(75, 'question');
+      await this.typeText(answer.answer);
+      if (answer.followups) this.showFollowupChips(answer.followups);
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // Unknown cat command
+    if (cmd.startsWith('cat ')) {
+      const proj = cmd.slice(4).trim();
+      const known = ['vod-platform', 'sfp-matcher-gateway', 'reelserver', 'mediametrie-engine', 'signature-pipeline', 'ingestion-protocols', 'aws-data-pipeline', 'analytics-service', 'resume'];
+      this.addLine(`cat: ${proj}: No such file or directory`, 'error');
+      this.addLine(`Available: ${known.join(', ')}`, 'dim');
+      this.log.error(`cat: ${proj} not found`);
+      this.inputEl.disabled = false;
+      this.inputEl.focus();
+      return;
+    }
+
+    // Anything else unrecognized
+    this.addLine(`bash: ${cmd}: command not found`, 'error');
+    this.addLine("Type 'help' for available commands.", 'dim');
+    this.showFollowupChips(['help']);
+    this.log.error(`command not found: ${cmd}`);
+    this.inputEl.disabled = false;
+    this.inputEl.focus();
+  }
+
+  // ── Keyword Q&A matcher ──
+  matchQna(text) {
+    const qna = this.content.qna;
+    if (!qna) return null;
+    const words = text.toLowerCase().split(/\s+/);
+    let best = null;
+    let bestScore = 0;
+    for (const entry of qna) {
+      let score = 0;
+      for (const kw of entry.keywords) {
+        if (text.includes(kw)) score += 2;
+        else if (words.some(w => kw.includes(w) && w.length > 2)) score += 1;
+      }
+      if (score > bestScore) {
+        bestScore = score;
+        best = entry;
+      }
+    }
+    return bestScore >= 2 ? best : null;
+  }
+
+  // ── Output ──
+  addLine(text, type = 'output') {
+    const div = document.createElement('div');
+    div.className = `line line-${type}`;
+    div.textContent = text;
+    this.outputEl.appendChild(div);
+    this.scrollToBottom();
+  }
+
+  addLineHTML(html, type = 'output') {
+    const div = document.createElement('div');
+    div.className = `line line-${type}`;
+    div.innerHTML = html;
+    this.outputEl.appendChild(div);
+    this.scrollToBottom();
+  }
+
+  addLines(lines, type = 'output') {
+    for (const l of lines) {
+      if (typeof l === 'object' && l.html) {
+        this.addLineHTML(l.html, type);
+      } else {
+        this.addLine(l, type);
+      }
+    }
+  }
+
+  addPromptLine(cmd) {
+    const div = document.createElement('div');
+    div.className = 'line line-prompt';
+    const promptSpan = document.createElement('span');
+    promptSpan.className = 'prompt-label';
+    promptSpan.textContent = this.content.meta.prompt + ' ';
+    const cmdSpan = document.createElement('span');
+    cmdSpan.className = 'cmd';
+    cmdSpan.textContent = cmd;
+    div.appendChild(promptSpan);
+    div.appendChild(cmdSpan);
+    this.outputEl.appendChild(div);
+    this.scrollToBottom();
+  }
+
+  // ── Typing ──
+  async typeLines(lines) {
+    this.isTyping = true;
+    this.skipTyping = false;
+    for (const line of lines) {
+      if (typeof line === 'object' && line.html) {
+        this.addLineHTML(line.html);
+      } else if (this.skipTyping) {
+        this.addLine(line);
+      } else {
+        await this.typeOneLine(line);
+      }
+    }
+    this.isTyping = false;
+  }
+
+  async typeOneLine(text) {
+    const div = document.createElement('div');
+    div.className = 'line line-output';
+    this.outputEl.appendChild(div);
+    if (this.skipTyping) { div.textContent = text; this.scrollToBottom(); return; }
+    for (let i = 0; i < text.length; i++) {
+      if (this.skipTyping) { div.textContent = text; this.scrollToBottom(); return; }
+      div.textContent = text.slice(0, i + 1);
+      this.scrollToBottom();
+      await this.sleep(8);
+    }
+  }
+
+  async typeText(text) {
+    this.isTyping = true;
+    this.skipTyping = false;
+    for (const line of text.split('\n')) {
+      if (this.skipTyping) { this.addLine(line); }
+      else { await this.typeOneLine(line); }
+    }
+    this.isTyping = false;
+  }
+
+  // ── Chips ──
+  showFollowupChips(followups) {
+    const c = document.createElement('div');
+    c.className = 'chips';
+    for (const text of followups) {
+      const chip = document.createElement('button');
+      chip.className = 'chip';
+      chip.textContent = text;
+      chip.addEventListener('click', () => {
+        this.log.chip(text);
+        this._lastInputMethod = 'chip';
+        trackEvent('chip_click', { chip_label: text });
+        c.remove();
+        this.execute(text);
+      });
+      c.appendChild(chip);
+    }
+    this.outputEl.appendChild(c);
+    this.scrollToBottom();
+  }
+
+  showCommandChips(cmd) {
+    const map = {
+      'help': ['whoami', 'ls projects', 'tree skills'],
+      'whoami': ['ls projects', 'tree skills', 'help'],
+      'ls projects': ['cat vod-platform', 'cat reelserver', 'cat sfp-matcher-gateway'],
+      'cat vod-platform': ['cat sfp-matcher-gateway', 'cat mediametrie-engine'],
+      'cat sfp-matcher-gateway': ['cat vod-platform', 'cat reelserver'],
+      'cat aws-data-pipeline': ['cat analytics-service', 'help'],
+      'cat reelserver': ['cat signature-pipeline', 'cat ingestion-protocols'],
+      'cat mediametrie-engine': ['cat vod-platform', 'help'],
+      'cat signature-pipeline': ['cat ingestion-protocols', 'cat reelserver'],
+      'cat ingestion-protocols': ['cat signature-pipeline', 'help'],
+      'cat analytics-service': ['cat aws-data-pipeline', 'help'],
+      'tree skills': ['ls projects', 'git log --oneline', 'help'],
+      'git log --oneline': ['whoami', 'ls projects', 'help'],
+      'cat resume': ['download resume', 'contact', 'help'],
+      'download resume': ['contact', 'sudo hire-me'],
+      'contact': ['sudo hire-me', 'cat resume', 'help'],
+      'sudo hire-me': ['cat resume', 'ls projects', 'help']
+    };
+    if (map[cmd]) this.showFollowupChips(map[cmd]);
+  }
+
+  showWelcomeChips() {
+    const labels = ['Projects', 'Experience', 'Skills', 'Resume', 'Contact'];
+    const cmds = ['ls projects', 'git log --oneline', 'tree skills', 'cat resume', 'contact'];
+    const c = document.createElement('div');
+    c.className = 'chips';
+    for (let i = 0; i < labels.length; i++) {
+      const chip = document.createElement('button');
+      chip.className = 'chip';
+      chip.textContent = labels[i];
+      const cmd = cmds[i];
+      chip.addEventListener('click', () => {
+        this.log.chip(labels[i]);
+        this._lastInputMethod = 'chip';
+        trackEvent('welcome_chip', { chip_label: labels[i] });
+        c.remove();
+        this.execute(cmd);
+      });
+      c.appendChild(chip);
+    }
+    this.outputEl.appendChild(c);
+    this.scrollToBottom();
+  }
+
+  // ── Token / XP meter ──
+  earnTokens(amount, source) {
+    const before = this.tokensEarned;
+    this.tokensEarned = Math.min(this.tokensEarned + amount, this.tokenBudget);
+    const earned = this.tokensEarned - before;
+    if (earned > 0) {
+      this.log.log(`+${earned} xp (${source})`, 'xp-gain');
+      this.log.tokens(this.tokensEarned, this.tokenBudget);
+    }
+    this.updateTokenMeter();
+
+    if (!this.milestoneReached && this.tokensEarned >= this.tokenBudget) {
+      this.milestoneReached = true;
+      this.log.log('🏆 MILESTONE: 2000 XP reached!', 'milestone');
+      trackEvent('milestone_reached', { xp: this.tokensEarned, commands_used: this.history.length });
+      setTimeout(() => this.showMilestone(), 600);
+    }
+  }
+
+  async showMilestone() {
+    this.addLine('');
+    this.addLine('═══════════════════════════════════════════', 'accent');
+    this.addLine('  🏆  2000 XP — You\'ve seen everything.', 'accent');
+    this.addLine('  Clearly, we should talk.', 'accent');
+    this.addLine('═══════════════════════════════════════════', 'accent');
+    this.addLine('');
+    this.addLineHTML('  📧  <a href="mailto:palayush1603@gmail.com" class="term-link">palayush1603@gmail.com</a>');
+    this.addLineHTML('  🔗  <a href="https://linkedin.com/in/palayush16/" target="_blank" rel="noopener" class="term-link">linkedin.com/in/palayush16/</a>');
+    this.addLineHTML('  🐙  <a href="https://github.com/palayush16" target="_blank" rel="noopener" class="term-link">github.com/palayush16</a>');
+    this.addLine('');
+    this.addLine('  Preferred: LinkedIn DM. Mention you hit 2000 XP ;)', 'dim');
+    this.addLine('');
+    this.showFollowupChips(['sudo hire-me', 'cat resume', 'contact']);
+    this.scrollToBottom();
+  }
+
+  updateTokenMeter() {
+    const pct = Math.min(100, (this.tokensEarned / this.tokenBudget) * 100);
+    this.tokenCountEl.textContent = `${this.tokensEarned} / ${this.tokenBudget}`;
+    this.tokenFillEl.style.width = `${pct}%`;
+    this.tokenFillEl.classList.remove('low', 'full', 'near');
+    if (pct >= 100) this.tokenFillEl.classList.add('full');
+    else if (pct >= 75) this.tokenFillEl.classList.add('near');
+  }
+
+  // ── Boot ──
+  async boot() {
+    this.log.system('visitor connected');
+    this.log.system('initializing terminal...');
+
+    this.isTyping = true;
+
+    // Progress bar boot sequence
+    const bootSteps = [
+      { text: 'kernel: portfolio-os 1.0.0 (tty1)', pct: 15 },
+      { text: 'init: mounting /dev/backend... OK', pct: 35 },
+      { text: 'init: loading modules [java, cpp, spring, aws, mpeg-ts]', pct: 60 },
+      { text: 'systemd: started terminal.service', pct: 85 },
+      { text: 'boot: ready', pct: 100 },
+    ];
+
+    // Create the progress bar element
+    const barContainer = document.createElement('div');
+    barContainer.className = 'line line-dim';
+    barContainer.style.marginTop = '4px';
+    const barLabel = document.createElement('div');
+    barLabel.className = 'line line-dim';
+    this.outputEl.appendChild(barLabel);
+    this.outputEl.appendChild(barContainer);
+
+    for (const step of bootSteps) {
+      // Update label
+      barLabel.textContent = step.text;
+      this.log.boot(step.text);
+
+      // Draw progress bar
+      const filled = Math.round(step.pct / 5);
+      const empty = 20 - filled;
+      const bar = '\u2588'.repeat(filled) + '\u2591'.repeat(empty);
+      barContainer.textContent = `[${bar}] ${step.pct}%`;
+      barContainer.style.color = step.pct >= 100 ? '#4ade80' : '#6b6b6b';
+      this.scrollToBottom();
+
+      if (!this.skipTyping) await this.sleep(300);
+    }
+
+    if (!this.skipTyping) await this.sleep(400);
+    this.outputEl.innerHTML = '';
+    this.log.system('boot complete');
+
+    for (const line of this.content.welcome) {
+      if (line.includes('ayush.init()')) {
+        this.addLine(line, 'welcome-title');
+      } else if (line.includes('\u2500')) {
+        this.addLine(line, 'accent');
+      } else if (line.includes('Software Engineer')) {
+        this.addLine(line, 'welcome-subtitle');
+      } else if (line.includes('no GUI here') || line.includes('help or click') || line.includes('Earn XP')) {
+        this.addLine(line, 'welcome-hint');
+      } else {
+        this.addLine(line, 'output');
+      }
+    }
+    this.showWelcomeChips();
+    this.isTyping = false;
+    this.inputEl.disabled = false;
+    this.inputEl.focus();
+    this.updateTokenMeter();
+    this.log.tokens(this.tokensEarned, this.tokenBudget);
+    this.log.system('ready \u2014 waiting for input');
+    trackEvent('session_start', { boot_skipped: this.skipTyping });
+  }
+
+  clearScreen() { this.outputEl.innerHTML = ''; }
+  scrollToBottom() { this.terminalEl.scrollTop = this.terminalEl.scrollHeight; }
+  sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+}
+
+// ═══════════════════════════════════════════════════
+//  6. HTOP — event-driven CPU spikes with exponential decay
+// ═══════════════════════════════════════════════════
+function initHtop(terminal) {
+  const cpuFill = document.getElementById('htop-cpu');
+  const cpuVal  = document.getElementById('htop-cpu-val');
+  const memFill = document.getElementById('htop-mem');
+  const memVal  = document.getElementById('htop-mem-val');
+  const fpsFill = document.getElementById('htop-fps');
+  const fpsVal  = document.getElementById('htop-fps-val');
+  const htopDom    = document.getElementById('htop-dom');
+  const htopUptime = document.getElementById('htop-uptime');
+  const htopTasks  = document.getElementById('htop-tasks');
+  const bootTs = Date.now();
+
+  let cpuLevel = 5;
+  const CPU_IDLE = 3;
+  const CPU_DECAY = 0.85;
+  let hoverActive = false;
+
+  // ── Real FPS counter ──
+  let fps = 60;
+  let frameCount = 0;
+  let lastFpsTime = performance.now();
+
+  function fpsLoop() {
+    frameCount++;
+    const now = performance.now();
+    if (now - lastFpsTime >= 1000) {
+      fps = frameCount;
+      frameCount = 0;
+      lastFpsTime = now;
+    }
+    requestAnimationFrame(fpsLoop);
+  }
+  requestAnimationFrame(fpsLoop);
+
+  function setCpu(pct) {
+    cpuLevel = Math.min(95, Math.max(CPU_IDLE, pct));
+    cpuFill.style.width = cpuLevel + '%';
+    cpuVal.textContent = Math.round(cpuLevel) + '%';
+  }
+
+  function spikeCpu(peak) {
+    setCpu(peak);
+  }
+
+  // Spike on Enter
+  document.getElementById('cmd-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') spikeCpu(60 + Math.random() * 30);
+  });
+
+  // Spike on terminal hover
+  document.getElementById('terminal').addEventListener('mouseenter', () => {
+    hoverActive = true;
+    spikeCpu(15 + Math.random() * 20);
+  });
+  document.getElementById('terminal').addEventListener('mouseleave', () => {
+    hoverActive = false;
+  });
+
+  // Spike on chip clicks
+  document.getElementById('output').addEventListener('click', (e) => {
+    if (e.target.classList.contains('chip')) spikeCpu(50 + Math.random() * 30);
+  });
+
+  // Spike on log hover
+  document.getElementById('log-feed').addEventListener('mouseenter', () => {
+    spikeCpu(10 + Math.random() * 15);
+  });
+
+  // Tick every 500ms
+  setInterval(() => {
+    // CPU (fake, event-driven)
+    if (!hoverActive) {
+      cpuLevel = cpuLevel * CPU_DECAY + CPU_IDLE * (1 - CPU_DECAY);
+      if (cpuLevel < 8) cpuLevel += Math.random() * 2;
+    } else {
+      cpuLevel += (Math.random() - 0.5) * 6;
+      cpuLevel = Math.max(10, Math.min(40, cpuLevel));
+    }
+    setCpu(cpuLevel);
+
+    // MEM (DOM-based estimate — grows as user explores)
+    const domNodes = document.querySelectorAll('*').length;
+    const estimatedKB = (domNodes * 0.8).toFixed(0); // ~800 bytes per node avg
+    const memPct = Math.min(100, (domNodes / 500) * 100); // 500 nodes = 100%
+    memFill.style.width = memPct + '%';
+    memVal.textContent = estimatedKB + 'KB';
+
+    // FPS (real)
+    const fpsPct = Math.min(100, (fps / 60) * 100);
+    fpsFill.style.width = fpsPct + '%';
+    fpsVal.textContent = fps;
+    // Color: green >50, yellow 30-50, red <30
+    fpsFill.style.background = fps >= 50 ? '#f59e0b' : fps >= 30 ? '#facc15' : '#f87171';
+
+    // DOM node count (real)
+    htopDom.textContent = document.querySelectorAll('*').length;
+
+    // Tasks & Uptime
+    htopTasks.textContent = 13 + terminal.history.length;
+    const s = Math.floor((Date.now() - bootTs) / 1000);
+    const m = Math.floor(s / 60);
+    htopUptime.textContent = `${m}:${String(s % 60).padStart(2, '0')}`;
+  }, 500);
+}
+
+// ═══════════════════════════════════════════════════
+//  7. HEARTBEAT — random system events in the activity log
+// ═══════════════════════════════════════════════════
+function startHeartbeat(activityLog) {
+  const messages = [
+    '[gc] freed 12.4MB -- heap OK',
+    '[watchdog] all threads healthy',
+    '[scheduler] next job in 847ms',
+    '[net] keepalive ping -- 0.3ms',
+    '[watchdog] heartbeat OK -- PID 1',
+    '[gc] eden space: 62% -> 8%',
+  ];
+
+  function schedule() {
+    const delay = 20000 + Math.random() * 40000;
+    setTimeout(() => {
+      const msg = messages[Math.floor(Math.random() * messages.length)];
+      activityLog.log(msg, 'heartbeat');
+      schedule();
+    }, delay);
+  }
+
+  setTimeout(schedule, 8000);
+}
+
+// ═══════════════════════════════════════════════════
+//  8. DOTS — window control dots (close/minimize/maximize)
+// ═══════════════════════════════════════════════════
+function initDots() {
+  // Red: shutdown animation -> resume.html
+  document.getElementById('dot-close').addEventListener('click', () => {
+    trackEvent('window_control', { action: 'close' });
+    const out = document.getElementById('output');
+    out.innerHTML = '';
+    const lines = ['Saving session...', 'Closing terminal...', '', 'Connection to ayush@portfolio closed.'];
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < lines.length) {
+        const div = document.createElement('div');
+        div.className = 'line line-dim';
+        div.textContent = lines[i];
+        out.appendChild(div);
+        i++;
+      } else {
+        clearInterval(interval);
+        setTimeout(() => { window.location.href = 'resume.html'; }, 800);
+      }
+    }, 300);
+  });
+
+  // Yellow: minimize/restore
+  let minimized = false;
+  const panels = document.getElementById('panels');
+  document.getElementById('dot-minimize').addEventListener('click', () => {
+    minimized = !minimized;
+    panels.classList.toggle('minimized', minimized);
+    trackEvent('window_control', { action: minimized ? 'minimize' : 'restore' });
+  });
+
+  // Green: toggle log panel
+  let logHidden = false;
+  const logPanel = document.getElementById('log-panel');
+  const divider = document.getElementById('panel-divider');
+  document.getElementById('dot-maximize').addEventListener('click', () => {
+    logHidden = !logHidden;
+    logPanel.classList.toggle('hidden', logHidden);
+    divider.classList.toggle('hidden', logHidden);
+    trackEvent('window_control', { action: logHidden ? 'hide_log' : 'show_log' });
+  });
+
+  // Track contact link clicks
+  document.getElementById('output').addEventListener('click', (e) => {
+    const link = e.target.closest('.term-link');
+    if (link) {
+      trackEvent('contact_click', { link_url: link.href, link_text: link.textContent });
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════
+//  8.5 RESIZER — draggable divider between terminal & activity
+// ═══════════════════════════════════════════════════
+function initResizer() {
+  const divider = document.getElementById('panel-divider');
+  const termPanel = document.getElementById('terminal-panel');
+  const logPanel = document.getElementById('log-panel');
+  const panels = document.getElementById('panels');
+
+  const MIN_TERMINAL = Math.floor(window.innerWidth * 0.5); // 50vw
+  const MIN_LOG = 200;
+  let isDragging = false;
+
+  function onPointerDown(e) {
+    // Skip on mobile (panels stacked vertically)
+    if (window.innerWidth <= 768) return;
+    isDragging = true;
+    divider.classList.add('dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+    e.preventDefault();
+  }
+
+  function onPointerMove(e) {
+    if (!isDragging) return;
+    const panelsRect = panels.getBoundingClientRect();
+    const totalWidth = panelsRect.width;
+    const mouseX = e.clientX - panelsRect.left;
+
+    // Clamp: both panels keep their min-width
+    const dividerW = 5;
+    const termWidth = Math.max(MIN_TERMINAL, Math.min(mouseX, totalWidth - MIN_LOG - dividerW));
+    const logWidth = totalWidth - termWidth - dividerW;
+
+    termPanel.style.flex = 'none';
+    termPanel.style.width = termWidth + 'px';
+    logPanel.style.width = logWidth + 'px';
+  }
+
+  function onPointerUp() {
+    if (!isDragging) return;
+    isDragging = false;
+    divider.classList.remove('dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  }
+
+  divider.addEventListener('pointerdown', onPointerDown);
+  document.addEventListener('pointermove', onPointerMove);
+  document.addEventListener('pointerup', onPointerUp);
+
+  // Double-click to reset to default split
+  divider.addEventListener('dblclick', () => {
+    termPanel.style.flex = '1';
+    termPanel.style.width = '';
+    logPanel.style.width = '340px';
+  });
+}
+
+// ═══════════════════════════════════════════════════
+//  9. BOOT — DOMContentLoaded wires everything
+// ═══════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  const actLog = new ActivityLog();
+  const t = new Terminal(CONTENT, actLog);
+
+  document.addEventListener('keydown', function skip() {
+    t.skipTyping = true;
+  }, { once: true });
+
+  t.boot();
+  initDots();
+  initHtop(t);
+  initResizer();
+  startHeartbeat(actLog);
+
+  // ── Analytics: session summary on exit ──
+  window.addEventListener('beforeunload', () => {
+    const duration = Math.round((Date.now() - t.bootTime) / 1000);
+    const cmdsRun = t.history.length;
+    const isBounce = cmdsRun === 0;
+
+    // Session summary
+    trackEvent('session_end', {
+      duration_seconds: duration,
+      commands_run: cmdsRun,
+      xp_earned: t.tokensEarned,
+      projects_viewed: Object.keys(t._projectViews).length,
+      unique_commands: Object.keys(t._commandCounts).length,
+      is_bounce: isBounce
+    });
+
+    // Most-used command
+    if (cmdsRun > 0) {
+      const sorted = Object.entries(t._commandCounts).sort((a, b) => b[1] - a[1]);
+      trackEvent('top_command', {
+        command_name: sorted[0][0],
+        count: sorted[0][1]
+      });
+    }
+
+    // Project heatmap summary
+    if (Object.keys(t._projectViews).length > 0) {
+      const projSorted = Object.entries(t._projectViews).sort((a, b) => b[1] - a[1]);
+      trackEvent('project_heatmap', {
+        most_viewed: projSorted[0][0],
+        most_viewed_count: projSorted[0][1],
+        total_unique: projSorted.length,
+        all_views: JSON.stringify(t._projectViews)
+      });
+    }
+  });
+});

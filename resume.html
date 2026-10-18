@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayush Pal — Resume</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230a0a0a'/><text x='10' y='68' font-family='monospace' font-size='55' fill='%234ade80'>%3E_</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+    :root {
+      --bg: #0a0a0a; --text: #d4d4d4; --text-dim: #6b6b6b;
+      --accent: #4ade80; --border: #1e1e1e;
+      --font: 'JetBrains Mono', monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg); color: var(--text); font-family: var(--font);
+      font-size: 14px; line-height: 1.7; max-width: 720px;
+      margin: 0 auto; padding: 40px 24px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1 { font-size: 20px; color: var(--accent); margin-bottom: 4px; }
+    .subtitle { color: var(--text-dim); margin-bottom: 24px; }
+    .links { margin-bottom: 32px; display: flex; flex-wrap: wrap; gap: 16px; }
+    h2 {
+      font-size: 14px; text-transform: uppercase; letter-spacing: 2px;
+      color: var(--accent); margin-top: 32px; margin-bottom: 12px;
+      padding-bottom: 4px; border-bottom: 1px solid var(--border);
+    }
+    .job { margin-bottom: 20px; }
+    .job-title { font-weight: 700; font-size: 13px; }
+    .job-meta { color: var(--text-dim); font-size: 13px; margin-bottom: 6px; }
+    ul { list-style: none; padding-left: 0; }
+    li::before { content: "→ "; color: var(--accent); }
+    li { margin-bottom: 6px; }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+    .skills-grid dt { color: var(--text-dim); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .skills-grid dd { margin-bottom: 12px; }
+    .terminal-link {
+      display: inline-block; margin-top: 32px; padding: 8px 16px;
+      border: 1px solid var(--border); border-radius: 4px;
+      color: var(--text-dim); font-size: 12px; transition: all 0.2s;
+    }
+    .terminal-link:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+    @media (max-width: 600px) { body { padding: 24px 16px; } .skills-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>Ayush Pal</h1>
+  <div class="subtitle">Software Engineer (MTS-1) · Backend · Systems</div>
+  <div class="links">
+    <a href="mailto:palayush1603@gmail.com">palayush1603@gmail.com</a>
+    <a href="https://linkedin.com/in/palayush16/" target="_blank">LinkedIn ↗</a>
+    <a href="https://github.com/palayush16" target="_blank">GitHub ↗</a>
+  </div>
+
+  <h2>Experience</h2>
+  <div class="job">
+    <div class="job-title">Software Engineer (MTS-1) — Nielsen</div>
+    <div class="job-meta">Bengaluru, India · Jul 2025 – Present</div>
+    <ul>
+      <li>VOD Processing Platform: Migrated .NET WinForms → Spring Boot on EKS; 6-worker concurrent pipeline with SQS/S3/DynamoDB</li>
+      <li>StreamFPMatcherGateway: Built from scratch — custom thread pool, WatchService, Quartz scheduling, crash recovery; 5K+ refs, 120K+ fragments/day</li>
+      <li>Mediametrie Integration: 100% SLA via 10-thread real-time SQS consumer processing into S3/DynamoDB</li>
+      <li>ReelServer (C++): 24/7 linear referencing across Italy/UK/France; 8 production releases</li>
+      <li>Audio Signature Pipeline: Eliminated collisions via silence-block insertion; 5,000+ channels</li>
+      <li>Ingestion Protocols: IGMPv3 SSM + SRT support; MPEG-TS language stream selection</li>
+    </ul>
+  </div>
+  <div class="job">
+    <div class="job-title">Software Engineer Intern — Nielsen</div>
+    <div class="job-meta">Bengaluru, India · Jul 2024 – Jun 2025</div>
+    <ul>
+      <li>Analytics Platform: React + EC2/VPC/NGINX data visualization, replacing CSV workflows</li>
+      <li>AWS Pipeline: S3 → SNS → SQS → Lambda → DynamoDB with CloudFormation IaC + JWT</li>
+    </ul>
+  </div>
+
+  <h2>Education</h2>
+  <div class="job">
+    <div class="job-title">BITS Pilani, Goa Campus</div>
+    <div class="job-meta">B.E. + M.Sc. Integrated Dual Degree · CGPA: 8.32 · Aug 2020 – Jul 2025</div>
+  </div>
+  <div class="job">
+    <div class="job-title">City Montessori School, Lucknow</div>
+    <div class="job-meta">Senior Secondary (PCM + CS) · 92.5% · 2020</div>
+  </div>
+
+  <h2>Skills</h2>
+  <dl class="skills-grid">
+    <div><dt>Languages</dt><dd>Java, C++, SQL, JavaScript</dd></div>
+    <div><dt>Backend</dt><dd>Spring Boot, Hibernate/JPA, REST, JWT, java.util.concurrent, Node.js</dd></div>
+    <div><dt>Cloud (AWS)</dt><dd>Lambda, S3, EC2, EKS, SQS, SNS, DynamoDB, CloudFormation, API Gateway, IAM, VPC</dd></div>
+    <div><dt>Systems</dt><dd>TCP/IP, UDP Multicast, IGMPv3, SRT, HLS, MPEG-TS, RTP</dd></div>
+    <div><dt>Databases</dt><dd>MySQL, DynamoDB, SQL Server</dd></div>
+    <div><dt>DevOps</dt><dd>Git, GitLab CI/CD, Maven/Gradle, NGINX, Windows Server/Linux</dd></div>
+  </dl>
+
+  <a href="index.html" class="terminal-link">← Back to terminal</a>
+</body>
+</html>
