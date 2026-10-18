@@ -4,8 +4,9 @@
 // ═══════════════════════════════════════════════════
 
 function trackEvent(name, params) {
-  console.log('[GA4 Event]:', name, params || {});
+  const payload = Object.assign({ debug_mode: true }, params || {});
+  console.log('[GA4 Event]:', name, payload);
   if (typeof gtag === 'function') {
-    gtag('event', name, params || {});
+    gtag('event', name, payload);
   }
 }
